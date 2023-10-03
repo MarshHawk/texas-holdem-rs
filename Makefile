@@ -6,19 +6,23 @@ rust-version:
 	rustup --version			#rust toolchain manager
 	clippy-driver --version		#rust linter
 
-format:
-	cargo fmt --quiet
-
-lint:
-	cargo clippy --quiet
-
-test:
-	cargo test --quiet
-
-run:
+run-api-local:
 	cargo run
 
-release:
-	cargo build --release
+run-api-docker:
+    docker compose up --build
 
-all: format lint test run
+#format:
+#	cargo fmt --quiet
+#
+#lint:
+#	cargo clippy --quiet
+#
+#test:
+#	cargo test --quiet
+#
+
+#release:
+#	cargo build --release
+#
+#all: format lint test run

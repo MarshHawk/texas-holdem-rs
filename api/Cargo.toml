@@ -1,0 +1,18 @@
+[package]
+name = "api"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+actix-web.workspace = true
+actix-web-lab.workspace = true
+actix-cors.workspace = true
+
+async-graphql = "5"
+async-graphql-actix-web = "5"
+
+env_logger.workspace = true
+log.workspace = true
+slab = "0.4"
