@@ -10,19 +10,4 @@ run-api-local:
 	cargo run
 
 run-api-docker:
-    docker compose up --build
-
-#format:
-#	cargo fmt --quiet
-#
-#lint:
-#	cargo clippy --quiet
-#
-#test:
-#	cargo test --quiet
-#
-
-#release:
-#	cargo build --release
-#
-#all: format lint test run
+	docker compose up --build

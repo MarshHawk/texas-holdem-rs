@@ -13,6 +13,8 @@ actix-cors.workspace = true
 async-graphql = "5"
 async-graphql-actix-web = "5"
 
+deal = { path = "../deal" }
+
 env_logger.workspace = true
 log.workspace = true
 slab = "0.4"

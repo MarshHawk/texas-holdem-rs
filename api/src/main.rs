@@ -1,5 +1,5 @@
 use actix_cors::Cors;
-use actix_web::{get, middleware::Logger, route, web, App, HttpServer, Responder};
+use actix_web::{get, middleware::Logger, route, web, App, HttpServer, Responder, HttpResponse, http::header::ContentType};
 use actix_web_lab::respond::Html;
 use async_graphql::{
     http::{playground_source, GraphQLPlaygroundConfig},
@@ -24,6 +24,13 @@ async fn graphql_playground() -> impl Responder {
     ))
 }
 
+/// handler with deal`
+async fn deal(path: web::Path<(usize,usize)>) -> HttpResponse {
+    HttpResponse::Ok()
+        .content_type(ContentType::plaintext())
+        .body(format!("Hello {}!", deal::add(path.0, path.1)))
+}
+
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     env_logger::init_from_env(env_logger::Env::new().default_filter_or("info"));
@@ -40,6 +47,7 @@ async fn main() -> std::io::Result<()> {
             .app_data(web::Data::new(schema.clone()))
             .service(graphql)
             .service(graphql_playground)
+            .service(web::resource("/deal/{int1}/{int2}").route(web::get().to(deal)))
             .wrap(Cors::permissive())
             .wrap(Logger::default())
     })
